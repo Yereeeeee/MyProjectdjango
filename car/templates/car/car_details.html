@@ -1,0 +1,28 @@
+{% extends 'car/layouts/index.html' %}
+{% block root %}
+    <style>
+        .parent{
+            display: flex;
+            position: relative;
+            left: 250px;
+
+            height: 400px;
+            width: 60%;
+            background-color: #948bff;
+        }
+        .img{
+            width: 30%;
+        }
+        .contentMY{
+            width: 70%;
+        }
+    </style>
+    <div class="parent">
+    <div class="img"><img src="{{ car.image.url }}" alt="..."></div>
+    <div class="contentMY">
+        <div>{{ car.model }}</div>
+        <div>{{ car.model }}</div>
+        <div>{{ car.model }}</div>a
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'car/layouts/index.html' %}
+{% block root %}
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 20%;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+        }
+        .pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+    </style>
+    <div>
+        <div class="cards">
+            {% for car in object_list %}
+                <div class="card">
+                    <a href="{{ car.get_absolute_url }}">
+                        <img src="{{ car.image.url }}" alt="Avatar" style="width:100%">
+                    </a>
+                    <div class="container">
+                        <h4><b>{{ car.model }}</b></h4>
+                        <p>price: {{ car.price }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+      <center>
+            <div>
+            <div class="pagination">
+                <a href="?page=1">&laquo;</a>
+                {% for page in page_obj.paginator.page_range %}
+                    <a href="?page={{ page }}">{{ page }}</a>
+                {% endfor %}
+                <a href="?page=2">&raquo;</a>
+            </div>
+        </div>
+      </center>
+    </div>
+{% endblock %}
