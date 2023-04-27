@@ -12,10 +12,11 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('', cache_page(60)(IndexView.as_view()), name='index'),
     path('register/', RegisterView.as_view(), name="register"),
+    path('api/auth/', include('rest_framework.urls')),
     path('login/', Login.as_view(), name="login"),
     path('logout/', sign_out, name="logout"),
-    path('<slug:slug>/<slug:url>/', carShow, name='show'),
-    path('<slug:slug>/', CategoryCars.as_view(), name='category'),
+    path('show/<slug:slug>/<slug:url>/', carShow, name='show'),
+    path('category/<slug:slug>/', CategoryCars.as_view(), name='category'),
 
 ]
 
