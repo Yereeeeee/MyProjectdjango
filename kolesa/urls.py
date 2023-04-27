@@ -2,13 +2,14 @@ from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import path
+from django.urls import path, include
 
 from car.views import *
 from kolesa import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('captcha/', include('captcha.urls')),
     path('', IndexView.as_view(), name='index'),
     path('register/', RegisterView.as_view(), name="register"),
     path('login/', Login.as_view(), name="login"),
